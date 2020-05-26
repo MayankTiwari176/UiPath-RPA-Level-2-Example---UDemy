@@ -73,7 +73,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <TryCatch.Try>
-        <Sequence DisplayName="Whole Process" sap:VirtualizedContainerService.HintSize="284,553" sap2010:WorkflowViewState.IdRef="Sequence_2">
+        <Sequence DisplayName="Whole Process" sap:VirtualizedContainerService.HintSize="284,659" sap2010:WorkflowViewState.IdRef="Sequence_2">
           <Sequence.Variables>
             <Variable x:TypeArguments="x:String" Name="CustomersFile" />
             <Variable x:TypeArguments="sd:DataTable" Name="CustomersToSave" />
@@ -119,7 +119,7 @@
                 <x:Boolean x:Key="IsPinned">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:ForEachRow CurrentIndex="{x:Null}" DataTable="[CustomersToSave]" DisplayName="Add All Customers to Website" sap:VirtualizedContainerService.HintSize="307,208" sap2010:WorkflowViewState.IdRef="ForEachRow_2">
+            <ui:ForEachRow CurrentIndex="{x:Null}" DataTable="[CustomersToSave]" DisplayName="Add All Customers to Website" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="ForEachRow_2">
               <ui:ForEachRow.Body>
                 <ActivityAction x:TypeArguments="sd:DataRow">
                   <ActivityAction.Argument>
@@ -168,21 +168,11 @@
                         </Assign>
                         <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Save Customers To Website" sap:VirtualizedContainerService.HintSize="262,51" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Save Data To Website.xaml">
                           <ui:InvokeWorkflowFile.Arguments>
-                            <InArgument x:TypeArguments="x:String" x:Key="firstName">
-                              <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="Customer.Item(&quot;First Name&quot;).ToString" />
-                            </InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="lastName">
-                              <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="Customer.Item(&quot;Last Name&quot;).ToString" />
-                            </InArgument>
-                            <InArgument x:TypeArguments="x:Int32" x:Key="age">
-                              <mva:VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="Age" />
-                            </InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="emailAddress">
-                              <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="Customer.Item(&quot;Email&quot;).ToString" />
-                            </InArgument>
-                            <InArgument x:TypeArguments="x:Int32" x:Key="birthYear">
-                              <mva:VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="BirthYear" />
-                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="firstName">[Customer.Item("First Name").ToString]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="lastName">[Customer.Item("Last Name").ToString]</InArgument>
+                            <InArgument x:TypeArguments="x:Int32" x:Key="age">[Age]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="emailAddress">[Customer.Item("Email").ToString]</InArgument>
+                            <InArgument x:TypeArguments="x:Int32" x:Key="birthYear">[BirthYear]</InArgument>
                           </ui:InvokeWorkflowFile.Arguments>
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -237,7 +227,15 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <ui:WriteRange AddHeaders="True" DataTable="[CustomersToSave]" DisplayName="Write Range" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="WriteRange_1" SheetName="Sheet1" StartingCell="A1" WorkbookPath="[CustomersFile]" />
-            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Saving &quot;]" />
+            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Saving.&quot;]" />
+          </Sequence>
+          <Sequence DisplayName="Clean up and end" sap:VirtualizedContainerService.HintSize="242,143" sap2010:WorkflowViewState.IdRef="Sequence_13">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:LogMessage DisplayName="Log Clean up Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Info" Message="[&quot;Cleaning up&quot;]" />
           </Sequence>
         </Sequence>
       </TryCatch.Try>
